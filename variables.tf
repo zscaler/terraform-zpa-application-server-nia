@@ -40,7 +40,7 @@ variable "application_server_enabled" {
   default     = true
 }
 
-/*
+
 ################################################################################
 # Server Group Variables
 ################################################################################
@@ -55,4 +55,3 @@ variable "server_group_dynamic_discovery" {
   description = "This field controls dynamic discovery of the servers."
   default     = false
 }
-*/

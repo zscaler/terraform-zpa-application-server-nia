@@ -15,7 +15,7 @@ vault {}
 
 # Consul Config Options
 consul {
-  address = "10.0.0.100:8500"
+  address = "10.0.31.151:8500"
 }
 
 # Terraform Driver Options
@@ -24,7 +24,6 @@ driver "terraform" {
   required_providers {
     zpa = {
       source = "zscaler/zpa"
-      version = "2.3.0"
     }
   }
 }
