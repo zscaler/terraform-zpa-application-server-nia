@@ -27,4 +27,6 @@ module "zpa_application_server_module" {
   byo_server_group             = var.byo_server_group
   byo_server_group_name        = var.byo_server_group_name
   byo_server_group_id          = var.byo_server_group_id
+  byo_app_connector_group_name = var.byo_app_connector_group_name
+  byo_app_connector_group_id   = var.byo_app_connector_group_id
 }

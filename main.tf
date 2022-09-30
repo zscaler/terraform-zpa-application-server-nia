@@ -17,56 +17,24 @@ resource "zpa_application_server" "this" {
 # Create a Server Group
 # https://help.zscaler.com/zpa/application-server-group-use-cases
 resource "zpa_server_group" "this" {
-  # count = var.byo_server_group == true ? 1 : 0
-  count = var.byo_server_group == true && var.server_group_dynamic_discovery == true ? 1 : 0
+  count = var.byo_server_group == false ? 1 : 0
 
-  name              = "${var.cts_prefix}${var.server_group_name}"
-  description       = "${var.cts_prefix}${var.server_group_description}"
-  enabled           = var.server_group_enabled
-  dynamic_discovery = var.server_group_dynamic_discovery #false
-  # servers {
-  #   id = []
-  # }
+  name        = "${var.cts_prefix}${var.server_group_name}"
+  description = "${var.cts_prefix}${var.server_group_description}"
+  enabled     = var.server_group_enabled
+  servers {
+    id = [for s in zpa_application_server.this : s.id]
+  }
   app_connector_groups {
-    id = [zpa_app_connector_group.this.id]
+    id = [data.zpa_app_connector_group.this.id]
   }
 }
 
-resource "zpa_server_group" "this1" {
-  count = var.byo_server_group == false && var.server_group_dynamic_discovery == false ? 1 : 0
-
-  name              = "${var.cts_prefix}${var.server_group_name}"
-  description       = "${var.cts_prefix}${var.server_group_description}"
-  enabled           = var.server_group_enabled
-  dynamic_discovery = var.server_group_dynamic_discovery #false
-  # servers {
-  #   id = [ zpa_application_server.this.*.id]
-  #     }
-  # dynamic "servers" {
-  #   for_each = zpa_application_server.this
-  #   content {
-  #     id = [servers.value.id]
-  #   }
-  # }
-  # servers {
-  #   id = [for s in zpa_application_server.this : s.id ]
-  # }
-
-  dynamic "servers" {
-    for_each = var.services
-  content {
-      id = [servers.value.id]
-    }
-  }
-  app_connector_groups {
-    id = [zpa_app_connector_group.this.id]
-  }
-}
 # Or reference an existing Server Group
-# data "zpa_server_group" "this" {
-#   id = var.byo_server_group == true ? zpa_server_group.this.*.id[0] : var.byo_server_group_id
-#   name = var.byo_server_group == true ? zpa_server_group.this.*.name[0] : var.byo_server_group_id
-# }
+data "zpa_server_group" "this" {
+  name = var.byo_server_group == false ? zpa_server_group.this[0].name : var.byo_server_group_name
+  id   = var.byo_server_group == false ? zpa_server_group.this.*.id[0] : var.byo_server_group_id
+}
 
 
 ################################################################################
@@ -75,9 +43,8 @@ resource "zpa_server_group" "this1" {
 # Create an App Connector Group
 # https://help.zscaler.com/zpa/app-connector-group-use-cases
 resource "zpa_app_connector_group" "this" {
-  # count = var.byo_app_connector_group == true ? 1 : 0
-
-  name                     = "${var.cts_prefix}${var.app_connector_group_name1}"
+  count                    = var.byo_app_connector_group == true ? 1 : 0
+  name                     = "${var.cts_prefix}${var.app_connector_group_name}"
   description              = "${var.cts_prefix}${var.app_connector_group_description}"
   enabled                  = var.app_connector_group_enabled
   city_country             = var.app_connector_group_city_country
@@ -93,7 +60,7 @@ resource "zpa_app_connector_group" "this" {
 }
 
 # Or reference an existing App Connector Group
-# data "zpa_app_connector_group" "this" {
-#   id = var.byo_app_connector_group == true ? zpa_app_connector_group.this.*.id[0] : var.byo_app_connector_group_id
-#   #name = var.byo_app_connector_group == true ? zpa_app_connector_group.this.*.name[0] : var.byo_app_connector_group_id
-# }
+data "zpa_app_connector_group" "this" {
+  name = var.byo_app_connector_group == false ? zpa_app_connector_group.this[0].name : var.byo_app_connector_group_name
+  id   = var.byo_app_connector_group == false ? zpa_app_connector_group.this.*.id[0] : var.byo_app_connector_group_id
+}

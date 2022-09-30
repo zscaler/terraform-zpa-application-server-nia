@@ -22,11 +22,14 @@ variable "services" {
   )
 }
 
+
+
 variable "cts_prefix" {
   type        = string
   description = "(Optional) Prefix that will be applied to all objects created via Consul-Terraform-Sync"
   default     = "cts-"
 }
+
 
 ################################################################################
 # Application Servers Variables
@@ -61,13 +64,13 @@ variable "byo_server_group_id" {
 variable "server_group_name" {
   type        = string
   description = "This field defines the name of the server group."
-  default     = "ServerGroup"
+  default     = "null"
 }
 
 variable "server_group_description" {
   type        = string
   description = "This field is the description of the server group."
-  default     = "ServerGroup"
+  default     = "null"
 }
 
 variable "server_group_enabled" {
@@ -76,11 +79,6 @@ variable "server_group_enabled" {
   default     = true
 }
 
-variable "server_group_dynamic_discovery" {
-  type        = bool
-  description = "This field controls dynamic discovery of the servers."
-  default     = false
-}
 
 ################################################################################
 # App Connector Group Variables
@@ -94,7 +92,7 @@ variable "byo_app_connector_group" {
 variable "byo_app_connector_group_name" {
   type        = string
   description = "User provided existing App Connector Group ID"
-  default     = null
+  default     = "AppConnectorGroup"
 }
 
 variable "byo_app_connector_group_id" {
@@ -103,16 +101,16 @@ variable "byo_app_connector_group_id" {
   default     = null
 }
 
-variable "app_connector_group_name1" {
+variable "app_connector_group_name" {
   type        = string
   description = "Name of the App Connector Group."
-  default     = "AppConnector"
+  default     = "AppConnectorGroup"
 }
 
 variable "app_connector_group_description" {
   type        = string
   description = "Description of the App Connector Group."
-  default     = "AppConnector"
+  default     = "AppConnectorGroup"
 }
 
 variable "app_connector_group_enabled" {
