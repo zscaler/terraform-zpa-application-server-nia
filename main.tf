@@ -43,14 +43,20 @@ resource "zpa_server_group" "this1" {
   #   id = [ zpa_application_server.this.*.id]
   #     }
   # dynamic "servers" {
-  #   # for_each = [for s in zpa_application_server.this : s.id]
-  #   for_each =
+  #   for_each = zpa_application_server.this
   #   content {
-  #     id = [servers.value]
+  #     id = [servers.value.id]
   #   }
   # }
-  servers {
-    id = [for s in zpa_application_server.this : s.id ]
+  # servers {
+  #   id = [for s in zpa_application_server.this : s.id ]
+  # }
+
+  dynamic "servers" {
+    for_each = var.services
+  content {
+      id = [servers.value.id]
+    }
   }
   app_connector_groups {
     id = [zpa_app_connector_group.this.id]
