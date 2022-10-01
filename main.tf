@@ -43,7 +43,7 @@ data "zpa_server_group" "this" {
 # Create an App Connector Group
 # https://help.zscaler.com/zpa/app-connector-group-use-cases
 resource "zpa_app_connector_group" "this" {
-  count                    = var.byo_app_connector_group == true ? 1 : 0
+  count                    = var.byo_app_connector_group == false ? 1 : 0
   name                     = "${var.cts_prefix}${var.app_connector_group_name}"
   description              = "${var.cts_prefix}${var.app_connector_group_description}"
   enabled                  = var.app_connector_group_enabled
