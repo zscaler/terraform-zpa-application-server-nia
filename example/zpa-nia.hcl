@@ -54,7 +54,7 @@ terraform_provider "zpa" {
 task {
   name = "zpa_application_server_update"
   description = "Automate Application Server Domain based on service definition"
-  module = "github.com/zscaler/com/terraform-zpa-application-server"
+  module = "github.com/zscaler/terraform-zpa-application-server-nia"
   providers = ["zpa"]
 
   condition "services" {
