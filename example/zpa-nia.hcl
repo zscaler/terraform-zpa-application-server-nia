@@ -20,7 +20,7 @@ buffer_period {
 
 # Consul Config Options
 consul {
-  address = "10.0.31.151:8500"
+  address = "10.0.0.100:8500"
 }
 
 # Terraform Driver Options
@@ -33,7 +33,6 @@ driver "terraform" {
   }
 }
 
-/*
 ################################################################################
 # Required when using HashiCorp Vault to Store ZPA API Keys
 ################################################################################
@@ -42,19 +41,19 @@ terraform_provider "zpa" {
   zpa_client_secret = "{{ with secret \"zscaler/zpacloud\" }}{{ .Data.data.client_secret }}{{ end }}"
   zpa_customer_id = "{{ with secret \"zscaler/zpacloud\" }}{{ .Data.data.customer_id }}{{ end }}"
 }
-*/
 
+/*
 terraform_provider "zpa" {
-  zpa_client_id = ""
+  zpa_client_id     = ""
   zpa_client_secret = ""
-  zpa_customer_id = ""
+  zpa_customer_id   = ""
 }
-
+*/
 
 task {
   name = "zpa_application_server_update"
   description = "Automate Application Server Domain based on service definition"
-  module = "github.com/zscaler/terraform-zpa-application-server-nia"
+  module = "../"
   providers = ["zpa"]
 
   condition "services" {
