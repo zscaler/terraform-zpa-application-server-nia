@@ -4,6 +4,6 @@
 
 ### Notes
 
-- Release date: **(October, 03 2022)**
+- Release date: **(October, 10 2022)**
 - Supported Terraform version: **v1.x**
 - Support Consul-Terraform-Sync: **v0.6.0**
