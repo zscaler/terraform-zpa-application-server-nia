@@ -22,10 +22,8 @@ resource "zpa_server_group" "this" {
   name        = "${var.cts_prefix}${var.server_group_name}"
   description = "${var.cts_prefix}${var.server_group_description}"
   enabled     = var.server_group_enabled
-  dynamic_discovery = false
   servers {
-    #id = [ for s in zpa_application_server.this : s.name ]  #Data Structure returned as a list - OK
-    id = [ for s in zpa_application_server.this : s.id ]  # Should also return a list of IDs but does not work. Worked before.
+    id = [for s in zpa_application_server.this : s.id]
   }
   app_connector_groups {
     id = [data.zpa_app_connector_group.this.id]

@@ -54,7 +54,5 @@ No resources.
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| <a name="output_application_server"></a> [application\_server](#output\_application\_server) | Map of application servers created within the module. |
+No outputs.
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

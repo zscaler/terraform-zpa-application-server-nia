@@ -40,71 +40,65 @@ Please refer to this [link](https://www.consul.io/docs/nia/installation/install)
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-### Ecosystem Requirements
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
+| <a name="requirement_zpa"></a> [zpa](#requirement\_zpa) | >=2.3.2 |
 
-| Ecosystem | Version |
-|-----------|---------|
-| [consul](https://www.consul.io/downloads) | >= 1.7 |
-| [consul-terraform-sync](https://www.consul.io/docs/nia) | >= 0.1.0 |
-| [terraform](https://www.terraform.io) | >= 0.13 |
-
-### Terraform Providers
+## Providers
 
 | Name | Version |
 |------|---------|
-| [zpa](https://registry.terraform.io/providers/zscaler/zpa/latest) | >= 2.2.0 |
-
-## Compatibility
-
-This module is meant for use with **consul-terraform-sync >= 0.1.0** and **Terraform >= 0.13**.
+| <a name="provider_zpa"></a> [zpa](#provider\_zpa) | 2.3.2 |
 
 ## Modules
 
-* Modules have been used in order to provider a seamless experience during deployment, due to the several dependencies existent in the application server resource.
-
-* An application server must be associated with a ``server group`` resource in other to process application traffic. In turn, a server group depends on an ``app connector group`` resource.
-
-* This module provides conditional capabilities where, the user can indicate the creation of a new server group and app connector groups, or utilization of existing resources via the ``terraform.tfvars`` file.
+No modules.
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [zpa_app_connector_group.this](https://registry.terraform.io/providers/zscaler/zpa/latest/docs/resources/zpa_app_connector_group) | resource |
-| [zpa_application_server.this](https://registry.terraform.io/providers/zscaler/zpa/latest/docs/resources/zpa_application_server) | resource |
-| [zpa_server_group.this](https://registry.terraform.io/providers/zscaler/zpa/latest/docs/resources/zpa_server_group) | resource |
-| [zpa_app_connector_group.this](https://registry.terraform.io/providers/zscaler/zpa/latest/docs/data-sources/zpa_app_connector_group) | data source |
-| [zpa_server_group.this](https://registry.terraform.io/providers/zscaler/zpa/latest/docs/data-sources/zpa_server_group) | data source |
+| [zpa_app_connector_group.this](https://registry.terraform.io/providers/zscaler/zpa/latest/docs/resources/app_connector_group) | resource |
+| [zpa_application_server.this](https://registry.terraform.io/providers/zscaler/zpa/latest/docs/resources/application_server) | resource |
+| [zpa_server_group.this](https://registry.terraform.io/providers/zscaler/zpa/latest/docs/resources/server_group) | resource |
+| [zpa_app_connector_group.this](https://registry.terraform.io/providers/zscaler/zpa/latest/docs/data-sources/app_connector_group) | data source |
+| [zpa_server_group.this](https://registry.terraform.io/providers/zscaler/zpa/latest/docs/data-sources/server_group) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_app_connector_group_city_country"></a> [app\_connector\_group\_city\_country](#input\_app\_connector\_group\_city\_country) | City of the Country where the app connector is located i.e San Jose, US | `string` | `"San Jose, US"` | no |
+| <a name="input_app_connector_group_city_country"></a> [app\_connector\_group\_city\_country](#input\_app\_connector\_group\_city\_country) | City of the Country where the app connector is located i.e US or CA | `string` | `"San Jose, US"` | no |
 | <a name="input_app_connector_group_country_code"></a> [app\_connector\_group\_country\_code](#input\_app\_connector\_group\_country\_code) | Code of the Country where the app connector is located i.e US or CA | `string` | `"US"` | no |
 | <a name="input_app_connector_group_description"></a> [app\_connector\_group\_description](#input\_app\_connector\_group\_description) | Description of the App Connector Group. | `string` | `"AppConnectorGroup"` | no |
-| <a name="input_app_connector_group_dns_query_type"></a> [app\_connector\_group\_dns\_query\_type](#input\_app\_connector\_group\_dns\_query\_type) | Description of the App Connector Group. | `string` | `"IPV4_IPV6"` | no |
+| <a name="input_app_connector_group_dns_query_type"></a> [app\_connector\_group\_dns\_query\_type](#input\_app\_connector\_group\_dns\_query\_type) | Whether to enable IPv4 or IPv6, or both, for DNS resolution of all applications in the App Connector Group. | `string` | `"IPV4_IPV6"` | no |
 | <a name="input_app_connector_group_enabled"></a> [app\_connector\_group\_enabled](#input\_app\_connector\_group\_enabled) | Whether this App Connector Group is enabled or not. | `bool` | `true` | no |
-| <a name="input_app_connector_group_latitude"></a> [app\_connector\_group\_latitude](#input\_app\_connector\_group\_latitude) | Whether this App Connector Group is enabled or not. | `string` | `"37.3382082"` | no |
+| <a name="input_app_connector_group_latitude"></a> [app\_connector\_group\_latitude](#input\_app\_connector\_group\_latitude) | Latitude of the App Connector Group. | `string` | `"37.3382082"` | no |
 | <a name="input_app_connector_group_location"></a> [app\_connector\_group\_location](#input\_app\_connector\_group\_location) | Location of the App Connector Group. | `string` | `"San Jose, CA, USA"` | no |
-| <a name="input_app_connector_group_longitude"></a> [app\_connector\_group\_longitude](#input\_app\_connector\_group\_longitude) | Whether this App Connector Group is enabled or not. | `string` | `"-121.8863286"` | no |
+| <a name="input_app_connector_group_longitude"></a> [app\_connector\_group\_longitude](#input\_app\_connector\_group\_longitude) | Longitude of the App Connector Group. | `string` | `"-121.8863286"` | no |
 | <a name="input_app_connector_group_name"></a> [app\_connector\_group\_name](#input\_app\_connector\_group\_name) | Name of the App Connector Group. | `string` | `"AppConnectorGroup"` | no |
 | <a name="input_app_connector_group_override_version_profile"></a> [app\_connector\_group\_override\_version\_profile](#input\_app\_connector\_group\_override\_version\_profile) | Whether the default version profile of the App Connector Group is applied or overridden. | `bool` | `true` | no |
 | <a name="input_app_connector_group_upgrade_day"></a> [app\_connector\_group\_upgrade\_day](#input\_app\_connector\_group\_upgrade\_day) | App Connectors in this group will attempt to update to a newer version of the software during this specified day. | `string` | `"SUNDAY"` | no |
 | <a name="input_app_connector_group_upgrade_time_in_secs"></a> [app\_connector\_group\_upgrade\_time\_in\_secs](#input\_app\_connector\_group\_upgrade\_time\_in\_secs) | App Connectors in this group will attempt to update to a newer version of the software during this specified time. | `string` | `"66600"` | no |
-| <a name="input_app_connector_group_version_profile_id"></a> [app\_connector\_group\_version\_profile\_id](#input\_app\_connector\_group\_version\_profile\_id) | ICMP Access Type for the application segment created by Consul-Terraform-Sync. | `string` | `"2"` | no |
+| <a name="input_app_connector_group_version_profile_id"></a> [app\_connector\_group\_version\_profile\_id](#input\_app\_connector\_group\_version\_profile\_id) | ID of the version profile | `string` | `"2"` | no |
 | <a name="input_application_server_enabled"></a> [application\_server\_enabled](#input\_application\_server\_enabled) | This field defines if the server group is enabled or disabled. | `bool` | `true` | no |
 | <a name="input_byo_app_connector_group"></a> [byo\_app\_connector\_group](#input\_byo\_app\_connector\_group) | Bring your own App Connector Group | `bool` | `false` | no |
 | <a name="input_byo_app_connector_group_id"></a> [byo\_app\_connector\_group\_id](#input\_byo\_app\_connector\_group\_id) | User provided existing App Connector Group ID | `string` | `null` | no |
-| <a name="input_byo_app_connector_group_name"></a> [byo\_app\_connector\_group\_name](#input\_byo\_app\_connector\_group\_name) | User provided existing App Connector Group ID | `string` | `"AppConnectorGroup"` | no |
+| <a name="input_byo_app_connector_group_name"></a> [byo\_app\_connector\_group\_name](#input\_byo\_app\_connector\_group\_name) | User provided existing App Connector Group Name | `string` | `null` | no |
 | <a name="input_byo_server_group"></a> [byo\_server\_group](#input\_byo\_server\_group) | Bring your own Server Group | `bool` | `false` | no |
 | <a name="input_byo_server_group_id"></a> [byo\_server\_group\_id](#input\_byo\_server\_group\_id) | User provided existing Server Group ID | `string` | `null` | no |
 | <a name="input_byo_server_group_name"></a> [byo\_server\_group\_name](#input\_byo\_server\_group\_name) | User provided existing Server Group ID | `string` | `null` | no |
 | <a name="input_cts_prefix"></a> [cts\_prefix](#input\_cts\_prefix) | (Optional) Prefix that will be applied to all objects created via Consul-Terraform-Sync | `string` | `"cts-"` | no |
-| <a name="input_server_group_description"></a> [server\_group\_description](#input\_server\_group\_description) | This field is the description of the server group. | `string` | `"null"` | no |
+| <a name="input_server_group_description"></a> [server\_group\_description](#input\_server\_group\_description) | This field is the description of the server group. | `string` | `"ServerGroup"` | no |
 | <a name="input_server_group_enabled"></a> [server\_group\_enabled](#input\_server\_group\_enabled) | This field defines if the server group is enabled or disabled. | `bool` | `true` | no |
-| <a name="input_server_group_name"></a> [server\_group\_name](#input\_server\_group\_name) | This field defines the name of the server group. | `string` | `"null"` | no |
+| <a name="input_server_group_name"></a> [server\_group\_name](#input\_server\_group\_name) | This field defines the name of the server group. | `string` | `"ServerGroup"` | no |
 | <a name="input_services"></a> [services](#input\_services) | Consul services monitored by Consul NIA | <pre>map(<br>    object({<br>      id        = string<br>      name      = string<br>      address   = string<br>      port      = number<br>      status    = string<br>      meta      = map(string)<br>      tags      = list(string)<br>      namespace = string<br><br>      node                  = string<br>      node_id               = string<br>      node_address          = string<br>      node_datacenter       = string<br>      node_tagged_addresses = map(string)<br>      node_meta             = map(string)<br>      cts_user_defined_meta = map(string)<br>    })<br>  )</pre> | n/a | yes |
+
+## Outputs
+
+No outputs.
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Usage
 
@@ -113,15 +107,18 @@ In order to use this module, you will need to install **consul-terraform-sync**,
 The users can subscribe to the services in the consul catalog and define the Terraform module which will be executed when there are any updates to the subscribed services using a **"task"**.
 
 **~> Note:** It is recommended to have the [consul-terraform-sync config guide](https://www.consul.io/docs/nia/installation/configuration) for reference.
+
 1. Download the **consul-terraform-sync** on a node which is highly available (prefrably, a node running a consul client)
 2. Add **consul-terraform-sync** to the PATH on that node
 3. Check the installation
+
    ```
     $ consul-terraform-sync --version
    0.1.0
    Compatible with Terraform ~>0.13.0
    ```
- 4. Create a config file **"tasks.hcl"** for consul-terraform-sync. Please note that this is just an example.
+
+4. Create a config file **"tasks.hcl"** for consul-terraform-sync. Please note that this is just an example.
 
 ```terraform
 log_level = <log_level> # eg. "info"
@@ -158,9 +155,11 @@ task {
 ```
 
  5. Start consul-terraform-sync
+
 ```
-$ consul-terraform-sync -config-file=tasks.hcl
+consul-terraform-sync -config-file=tasks.hcl
 ```
+
 **consul-terraform-sync** will create right set of application segments in the ZPA Cloud based on the values in consul catalog.
 
 **consul-terraform-sync is now subscribed to the Consul catalog. Any updates to the services identified in the task will result in updating the application segment in the ZPA Cloud**
@@ -170,6 +169,7 @@ $ consul-terraform-sync -config-file=tasks.hcl
 ## How does consul-terraform-sync work?
 
 There are 2 aspects of consul-terraform-sync.
+
 1. **Updates from Consul catalog:**
 In the backend, consul-terraform-sync creates a blocking API query session with the Consul agent indentified in the config to get updates from the Consul catalog.
 consul-terraform-sync.
@@ -201,6 +201,7 @@ If a task and is defined, one or more services are associated with the task, pro
          * Consul K/V is used as the backend state for fo this Terraform workspace.
 
          example generated main.tf:
+
           ```terraform
          # This file is generated by Consul NIA.
          #
@@ -234,10 +235,12 @@ If a task and is defined, one or more services are associated with the task, pro
            services = var.services
          }
           ```
+
       * **variables.tf:**
         * This is variables.tf file defined in the module
 
          example generated variables.tf
+
          ```terraform
          variable "services" {
          description = "Consul services monitored by Consul NIA"
@@ -275,12 +278,14 @@ If a task and is defined, one or more services are associated with the task, pro
          }
 
          ```
+
       * **terraform.tfvars:**
          * This is the most important file generated by consul-terraform-sync.
          * This variables file is generated with the most updated values from Consul catalog for all the services identified in the task.
          * consul-terraform-sync updates this file with the latest values when the corresponding service gets updated in Consul catalog.
 
          example terraform.tfvars
+
          ```terraform
               services = {
                 "web.hpc152-nginx.sgio01" = {
@@ -359,11 +364,37 @@ If a task and is defined, one or more services are associated with the task, pro
                   cts_user_defined_meta = {}
                 },
               }
+
       ```
 
       * **Network Infrastructure Automation (NIA) compatible modules are built to utilize the above service variables**
-    6. **consul-terraform-sync** manages the entire Terraform workflow of plan, apply and destroy for all the individual workspaces corrresponding to the defined     "tasks" based on the updates to the services to those tasks.
+   6. **consul-terraform-sync** manages the entire Terraform workflow of plan, apply and destroy for all the individual workspaces corrresponding to the defined     "tasks" based on the updates to the services to those tasks.
 
   **In summary, consul-terraform-sync triggers a Terraform workflow (plan, apply, destroy) based on updates it detects from Consul catalog.**
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
+## Versioning
+
+These modules follow recommended release tagging in [Semantic Versioning](http://semver.org/). You can find each new release,
+along with the changelog, on the GitHub [Releases](https://github.com/zscaler/terraform-aws-zpa-app-connector-modules/releases) page.
+
+# License and Copyright
+
+Copyright (c) 2022 Zscaler, Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
